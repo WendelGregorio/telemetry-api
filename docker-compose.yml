@@ -1,25 +1,27 @@
 version: "3.9"
 
 services:
-  postgress:
+  postgres:
     image: postgres:15
-    container_name: telemetry_postgress
+    container_name: telemetry-postgres
     environment:
-      - POSTGRES_USER: dev
-      - POSTGRES_PASSWORD: dev
-      - POSTGRES_DB: telemetry
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: telemetry
     ports:
       - "5432:5432"
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
-  telemetry-api:
+  api:
     build: .
-    container_name: telemetry_api
+    container_name: telemetry-api
     command: npm run dev
+    volumes:
+      - .:/app
     ports:
       - "3000:3000"
     depends_on:
-      - postgress
-    volumes:
-      - .:/app
+      - postgres
+volumes:
+  postgres_data:
