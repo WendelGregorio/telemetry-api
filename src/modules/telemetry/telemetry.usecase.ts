@@ -10,8 +10,9 @@ interface IngestTelemetryInterface {
 
 export class TelemetryUsecase {
     constructor(
+        private devicesRepository: DevicesRepository,
         private telemetryRepository: TelemetryRepository,
-        private devicesRepository: DevicesRepository
+        
     ) {}
 
     async ingest(input: IngestTelemetryInterface): Promise<void> {
