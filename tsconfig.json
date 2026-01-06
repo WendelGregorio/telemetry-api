@@ -3,6 +3,8 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "nodenext",
+    "types": ["nodenext", "jest"],
+    "isolatedModules": true,
     "esModuleInterop": true,
     "target": "esnext",
     "strict": true,
