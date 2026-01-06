@@ -170,7 +170,3 @@ npm test
 * O uso de Docker permite rodar o ambiente de forma previsível e reproduzível
 
 ---
-
-## Autor
-
-Wendel Gregório
