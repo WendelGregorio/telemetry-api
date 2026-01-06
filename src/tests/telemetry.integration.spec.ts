@@ -33,7 +33,15 @@ describe("Telemetry multi-tenant isolation", () => {
         expect(response.body).toEqual({message:"Unauthorized access to device"})
     })
 
+    it('should not allow writing telemetry for a device from another tenant', async () => {
+        await request(app)
+            .post('/telemetry')
+            .set("x-tenant-id", "tenantA")
+            .send({ deviceId: device2Id, value: 30 })
+            .expect(403)
+    })
+
     afterAll(async () => {
-    await closeDb();
+        await closeDb();
     });
 })
